@@ -15,8 +15,12 @@ import java.util.List;
 
 @Controller
 public class CarsController {
-    private CarService carService = new CarServiceImp();
 
+    private CarService carService;
+    @Autowired
+    public CarsController(CarService carService) {
+        this.carService = carService;
+    }
 
     @GetMapping(value = "/cars")
     public String printCarToCount(ModelMap model, HttpServletRequest request) {
