@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car</title>
+</head>
+<body>
+<div>
+    <table border="1">
+        <tr>
+            <th>Model</th>
+            <th>Model year</th>
+            <th>VIN code</th>
+        </tr>
+        <tr th:each = "car : ${cars}">
+            <td th:utext = "${car.model}"></td>
+            <td th:utext = "${car.modelYear}"></td>
+            <td th:utext = "${car.vinCode}"></td>
+        </tr>
+    </table>
+</div>
+
+
+</body>
+</html>
