@@ -53,9 +53,11 @@ public class CarDAOImpl implements CarDAO{
 
     @Override
     public void updateCar(int id, Car car) {
-        Car tempCar = getCarById(id);
-        tempCar = car;
-        entityManager.refresh(tempCar);
+        entityManager.createQuery("update Car e set e.model =: model, e.modelYear =: modelYear, e.vinCode =: vinCode where e.id =: id")
+                .setParameter("model", car.getModel())
+                .setParameter("modelYear", car.getModelYear())
+                .setParameter("vinCode", car.getVinCode())
+                .setParameter("id", id).executeUpdate();
         System.out.println(".......................Car update.....................");
     }
 
