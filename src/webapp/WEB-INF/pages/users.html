@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+<div>
+    <table border="1">
+        <tr>
+            <th>_ID_</th>
+            <th>_Name_</th>
+            <th>_Last Name_</th>
+            <th>_Age_</th>
+        </tr>
+        <tr th:each = "user : ${cars}">
+            <td>
+                <a th:href="@{/{id}(id=${user.getId()})}" th:utext = "${user.id}">Ссылка</a>
+            </td>
+            <td th:utext = "${user.name}"></td>
+            <td th:utext = "${user.lastName}"></td>
+            <td th:utext = "${user.age}"></td>
+        </tr>
+    </table>
+</div>
+
+<form action="/new">
+    </br>
+    <button>Add new User</button>
+</form>
+
+</body>
+</html>
