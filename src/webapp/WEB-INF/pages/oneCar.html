@@ -1,0 +1,28 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Car</title>
+</head>
+<body>
+<label>Model: </label>
+<a th:text="${car.getModel()}">VALUE</a>
+</br>
+<label >Model year: </label>
+<a th:text="${car.getModelYear()}">VALUE</a>
+</br>
+<label>VIN code: </label>
+<a th:text="${car.getVinCode()}">VALUE</a>
+</br>
+
+<form th:method="GET" th:action="@{/{id}/update(id=${car.getId()})}">
+    <input type="submit" VALUE="Edit"/>
+</form>
+<form th:method="DELETE" th:action="@{/{id}(id=${car.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+<form action="/">
+    <input type="submit" value="Back"/>
+</form>
+</body>
+</html>

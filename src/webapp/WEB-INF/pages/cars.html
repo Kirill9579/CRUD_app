@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Car</title>
@@ -8,11 +8,15 @@
 <div>
     <table border="1">
         <tr>
-            <th>Model</th>
-            <th>Model year</th>
-            <th>VIN code</th>
+            <th>_ID_</th>
+            <th>_Model_</th>
+            <th>_Model year_</th>
+            <th>_VIN code_</th>
         </tr>
         <tr th:each = "car : ${cars}">
+            <td>
+                <a th:href="@{/{id}(id=${car.getId()})}" th:utext = "${car.id}">Ссылка</a>
+            </td>
             <td th:utext = "${car.model}"></td>
             <td th:utext = "${car.modelYear}"></td>
             <td th:utext = "${car.vinCode}"></td>
@@ -20,6 +24,10 @@
     </table>
 </div>
 
+<form action="/new">
+    </br>
+    <button>Add new Car</button>
+</form>
 
 </body>
 </html>

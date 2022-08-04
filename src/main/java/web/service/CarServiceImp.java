@@ -4,29 +4,44 @@ import jdk.jfr.TransitionFrom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import web.dao.CarDAO;
 import web.model.Car;
 
 import java.util.Arrays;
 import java.util.List;
 @Component
+@Transactional
 public class CarServiceImp implements CarService{
 
-    private List<Car> cars = Arrays.asList(
-            new Car("Tesla", 2020, 432652648),
-            new Car("Land Rover", 2021, 753285742),
-            new Car("Toyota", 2019, 426426645),
-            new Car("Lexus", 1995, 832578234),
-            new Car("Honda", 2001, 436543324)
-    );
-
-    @Override
-
-    public List<Car> getLimitListCars(int count) {
-        return cars.stream().limit(count).toList();
+    private CarDAO connection;
+    @Autowired
+    public CarServiceImp(CarDAO connection) {
+        this.connection = connection;
     }
 
     @Override
-    public List<Car> getCars() {
-        return cars;
+    public void addCar(Car car) {
+        connection.addCar(car);
+    }
+
+    @Override
+    public void removeCarById(int id) {
+        connection.removeCarById(id);
+    }
+
+    @Override
+    public List<Car> getListCars() {
+        return connection.getListCars();
+    }
+
+    @Override
+    public Car getCarById(int id) {
+        return connection.getCarById(id);
+    }
+
+    @Override
+    public void updateCar(int id, Car car) {
+        connection.updateCar(id, car);
     }
 }
