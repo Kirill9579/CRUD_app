@@ -10,7 +10,6 @@ import web.model.User;
 
 import java.util.List;
 @Service
-
 public class UserServiceImp implements UserService {
 
     private UserDAO connection;
