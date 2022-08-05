@@ -26,8 +26,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void removeUserById(int id) {
-        entityManager.createQuery("delete User where id =: id")
-                        .setParameter("id", id).executeUpdate();
+        entityManager.remove(getUserById(id));
 
         System.out.println(".......................User delete.....................");
     }
@@ -36,22 +35,21 @@ public class UserDAOImpl implements UserDAO {
     public List<User> getListUsers() {
         System.out.println(".......................User list show.....................");
         return entityManager
-                .createQuery("select с from User с", User.class)
+                .createQuery("from User", User.class)
                 .getResultList();
     }
 
     @Override
     public User getUserById(int id) {
-        User user = entityManager.createQuery("from User c where c.id =: id", User.class)
-                .setParameter("id", id)
-                .getSingleResult();
+        User user = entityManager.find(User.class, id);
         System.out.println(".......................User find.....................");
         return user;
     }
 
     @Override
     public void updateUser(int id, User user) {
-        entityManager.createQuery("update User e set e.name =: name, e.lastName =: lastName, e.age =: age where e.id =: id")
+        entityManager.createQuery("update User e set e.name =: name," +
+                        " e.lastName =: lastName, e.age =: age where e.id =: id")
                 .setParameter("name", user.getName())
                 .setParameter("lastName", user.getLastName())
                 .setParameter("age", user.getAge())
