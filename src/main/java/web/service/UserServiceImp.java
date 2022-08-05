@@ -10,7 +10,7 @@ import web.model.User;
 
 import java.util.List;
 @Service
-@Transactional
+
 public class UserServiceImp implements UserService {
 
     private UserDAO connection;
@@ -20,11 +20,13 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
+    @Transactional
     public void addUser(User user) {
         connection.addUser(user);
     }
 
     @Override
+    @Transactional
     public void removeUserById(int id) {
         connection.removeUserById(id);
     }
@@ -40,6 +42,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
+    @Transactional
     public void updateUser(int id, User user) {
         connection.updateUser(id, user);
     }
